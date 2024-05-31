@@ -72,7 +72,10 @@
                                     <path d="M20 8v6M23 11h-6" />
                                 </svg>
                                 <span class="ml-3">
-                                    Sign Up
+                                    <a href="/dashboard">
+                                        Sign Up
+                                    </a>
+                                    
                                 </span>
                             </button>
 
