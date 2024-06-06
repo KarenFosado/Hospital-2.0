@@ -20,13 +20,8 @@ const router = createRouter({
         {
             path: '/dashboard',
             name: 'dashboard',
-            component: Dashboard
-        },
-        // seccion de modulos 
-        {
-            path: '/person',
-            name: 'person',
-            component: Person
+            component: Dashboard,
+            children:[{path: '/personas', name: 'personas', component: Person}]
         },
         {
             path: '/usarios',
