@@ -7,17 +7,17 @@ class userBase(BaseModel):
     password: str
     created_at: datetime
     estatus: bool 
-    Id_PERSONA: int
+    Id_persona: int
     
-class UserCreate(UserBase):
+class UserCreate(userBase):
     pass
 
-class UserUpdate(UserBase):
+class UserUpdate(userBase):
     pass
 
 
-class User(UserBase):
+class User(userBase):
     id: int 
     
     class Config: 
-        orm_mode = True
+        from_attributes = True
