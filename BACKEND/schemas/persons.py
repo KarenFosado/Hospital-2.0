@@ -2,6 +2,8 @@ from typing import List, Union
 from pydantic import BaseModel
 from datetime import datetime
 
+from models.persons import MyGenero, MySangre
+
 class PersonBase(BaseModel):
     Titulo_Cortesia: str
     Nombre: str
@@ -9,8 +11,8 @@ class PersonBase(BaseModel):
     Segundo_Apellido: str
     Fecha_Nacimiento: datetime
     Fotografia: str
-    Genero: str
-    Tipo_Sangre: str
+    Genero: MyGenero
+    Tipo_Sangre: MySangre
     Estatus: bool
     Fecha_Registro: datetime
     Fecha_Actualizacion: datetime
