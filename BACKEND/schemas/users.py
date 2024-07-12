@@ -1,23 +1,32 @@
 from typing import List, Union
-from pydantic import BaseModel 
+from pydantic import BaseModel
 from datetime import datetime
 
-class userBase(BaseModel):
-    usuario: str
-    password: str
-    created_at: datetime
-    estatus: bool 
-    Id_persona: int
-    
-class UserCreate(userBase):
+class UserBase(BaseModel):
+    Persona_ID: int
+    Nombre_Usuario: str
+    Correo_Electronico: str
+    Contrasena: str
+    Numero_Telefonico_Movil: str
+    Estatus: str
+    Fecha_Registro: datetime
+    Fecha_Actualizacion: datetime
+
+class UserCreate(UserBase):
     pass
 
-class UserUpdate(userBase):
+class UserUpdate(UserBase):
     pass
 
+class User(UserBase):
+    ID: int
+    Persona_ID: int
+    class Config:
+        orm_mode = True
+        
+class UserLogin(BaseModel):
+    Nombre_Usuario: str
+    Correo_electronico: str
+    Contrasena: str
+    Numero_Telefonico_Movil: str
 
-class User(userBase):
-    id: int 
-    
-    class Config: 
-        from_attributes = True

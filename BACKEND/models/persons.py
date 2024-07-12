@@ -2,23 +2,22 @@ from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, E
 from sqlalchemy.dialects.mysql import LONGTEXT
 from sqlalchemy.orm import relationship
 from config.db import Base
+import enum
 
-class MyGenero (enum.Enum):
+class MyGenero(enum.Enum):
     Masculino = "Masculino"
     Femenino = "Femenino"
     Otro = "Otro"
-    
+
 class MySangre(enum.Enum):
     AP = "A+"
     AN = "A-"
     BP = "B+"
     BN = "B-"
-    
-        
-        
-    
-    
-
+    ABP = "AB+"
+    ABN = "AB-"
+    OP = "O+"
+    ON = "O-" 
 
 class Person(Base):
     __tablename__ = "tbb_personas"
