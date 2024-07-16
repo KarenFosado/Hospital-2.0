@@ -24,7 +24,7 @@ class User(UserBase):
     ID: int
     Persona_ID: int
     class Config:
-        orm_mode = True
+        from_attributes = True
         
 class UserLogin(BaseModel):
     Nombre_Usuario: str

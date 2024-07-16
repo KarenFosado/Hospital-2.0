@@ -27,4 +27,4 @@ class Person(PersonBase):
     id: int
     #owner_id: int clave foranea
     class Config:
-        orm_mode = True
+       from_attributes = True
