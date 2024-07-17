@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Optional
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -10,7 +10,7 @@ class UserBase(BaseModel):
     Correo_Electronico: str
     Contrasena: str
     Numero_Telefonico_Movil: str
-    Estatus: MyEstatus
+    Estatus: str
     Fecha_Registro: datetime
     Fecha_Actualizacion: datetime
 
@@ -24,11 +24,11 @@ class User(UserBase):
     ID: int
     Persona_ID: int
     class Config:
-        from_attributes = True
+        orm_mode = True
         
 class UserLogin(BaseModel):
-    Nombre_Usuario: str
-    Correo_electronico: str
+    Nombre_Usuario: Optional[str] = None
+    Correo_electronico: Optional[str] = None
     Contrasena: str
-    Numero_Telefonico_Movil: str
+    Numero_Telefonico_Movil: Optional[str] = None
 
