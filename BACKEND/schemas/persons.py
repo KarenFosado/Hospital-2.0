@@ -24,7 +24,7 @@ class PersonUpdate(PersonBase):
     pass
 
 class Person(PersonBase):
-    id: int
+    ID: int
     #owner_id: int clave foranea
     class Config:
        from_attributes = True

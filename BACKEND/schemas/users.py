@@ -2,8 +2,6 @@ from typing import List, Union, Optional
 from pydantic import BaseModel
 from datetime import datetime
 
-from models.users import MyEstatus
-
 class UserBase(BaseModel):
     Persona_ID: int
     Nombre_Usuario: str
@@ -28,7 +26,7 @@ class User(UserBase):
         
 class UserLogin(BaseModel):
     Nombre_Usuario: Optional[str] = None
-    Correo_electronico: Optional[str] = None
+    Correo_Electronico: Optional[str] = None
     Contrasena: str
     Numero_Telefonico_Movil: Optional[str] = None
 
