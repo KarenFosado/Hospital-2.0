@@ -34,19 +34,28 @@
                         <th scope="col" class="p-4">
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Donador
+                            NOMBRE
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Donatario
+                            APARATOS Y SISTEMAS
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Medico
+                            DESCRIPCION 
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Organo
+                            DISPONIBILIDAD
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Prioridad
+                            TIPO
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            TIPO
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            FECHA DE ACTUALIZACION 
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            FECHA DE REGISTRO 
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -74,32 +83,13 @@
                             $2999
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
-                                <span class="material-symbols-outlined">edit</span>
-                            </a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                                <span class="material-symbols-outlined">delete</span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Microsoft Surface Pro
-                        </th>
-                        <td class="px-6 py-4">
-                            White
+                            $2999
                         </td>
                         <td class="px-6 py-4">
-                            Laptop PC
+                            $2999
                         </td>
                         <td class="px-6 py-4">
-                            $1999
-                        </td>
-                        <td class="px-6 py-4">
-                            $1999
+                            $2999
                         </td>
                         <td class="px-6 py-4">
                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
@@ -110,117 +100,7 @@
                             </a>
                         </td>
                     </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
-                                <span class="material-symbols-outlined">edit</span>
-                            </a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                                <span class="material-symbols-outlined">delete</span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple Watch
-                        </th>
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td class="px-6 py-4">
-                            $179
-                        </td>
-                        <td class="px-6 py-4">
-                            $179
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
-                                <span class="material-symbols-outlined">edit</span>
-                            </a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                                <span class="material-symbols-outlined">delete</span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            iPad
-                        </th>
-                        <td class="px-6 py-4">
-                            Gold
-                        </td>
-                        <td class="px-6 py-4">
-                            Tablet
-                        </td>
-                        <td class="px-6 py-4">
-                            $699
-                        </td>
-                        <td class="px-6 py-4">
-                            $699
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
-                                <span class="material-symbols-outlined">edit</span>
-                            </a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                                <span class="material-symbols-outlined">delete</span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                        </td>
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple iMac 27"
-                        </th>
-                        <td class="px-6 py-4">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4">
-                            PC Desktop
-                        </td>
-                        <td class="px-6 py-4">
-                            $3999
-                        </td>
-                        <td class="px-6 py-4">
-                            $3999
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
-                                <span class="material-symbols-outlined">edit</span>
-                            </a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                                <span class="material-symbols-outlined">delete</span>
-                            </a>
-                        </td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
@@ -262,7 +142,3 @@
     </nav>
 
 </form></template>
-
-<script>
-
-</script>
