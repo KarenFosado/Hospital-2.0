@@ -5,7 +5,7 @@
             
 
             <div class="flex justify-between  flex-col items-center">
-                <label class="bloc k text-gray-700 text-3xl font-normal mb-2">Informacion del Donatario</label>
+                <label class="bloc k text-gray-700 text-3xl font-normal mb-2">Datos del organo</label>
             </div>
            
  
