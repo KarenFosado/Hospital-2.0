@@ -13,7 +13,7 @@
                 <div>
                     <RouterLink to="/organform">
                         <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio" class="inline-flex items-center text-white bg-blue-500 border border-blue-300 focus:outline-none hover:bg-blue-400 focus:ring-4 focus:ring-blue-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-blue-800 dark:text-white dark:border-blue-600 dark:hover:bg-blue-700 dark:hover:border-blue-600 dark:focus:ring-blue-700" type="button">
-                            Agregar Organo
+                            Agregar Órgano
                         </button>
                     </RouterLink>
                 </div>
@@ -25,17 +25,17 @@
                         <th scope="col" class="p-4"></th>
                         <th scope="col" class="px-6 py-3">NOMBRE</th>
                         <th scope="col" class="px-6 py-3">APARATOS Y SISTEMAS</th>
-                        <th scope="col" class="px-6 py-3">DESCRIPCION</th>
+                        <th scope="col" class="px-6 py-3">DESCRIPCIÓN</th>
                         <th scope="col" class="px-6 py-3">DISPONIBILIDAD</th>
                         <th scope="col" class="px-6 py-3">TIPO</th>
-                        <th scope="col" class="px-6 py-3">FECHA DE ACTUALIZACION</th>
+                        <th scope="col" class="px-6 py-3">FECHA DE ACTUALIZACIÓN</th>
                         <th scope="col" class="px-6 py-3">FECHA DE REGISTRO</th>
                         <th scope="col" class="px-6 py-3">ESTATUS</th>
-                        <th scope="col" class="px-6 py-3">Action</th>
+                        <th scope="col" class="px-6 py-3">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <tr v-for="organo in organos" :key="organo.ID" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="w-4 p-4"></td>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ organo.Nombre }}</th>
                         <td class="px-6 py-4">{{ organo.Aparato_Sistema }}</td>
@@ -46,6 +46,7 @@
                         <td class="px-6 py-4">{{ organo.Fecha_Registro }}</td>
                         <td class="px-6 py-4">{{ organo.Estatus }}</td>
                         <td class="px-6 py-4">
+                            
                             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
                                 <span class="material-symbols-outlined">edit</span>
                             </a>
@@ -98,17 +99,7 @@ export default {
     data() {
         return {
             organos: [],
-            api: "http://127.0.0.1:8000/organos/",
-            organo: {
-                Nombre: "",
-                Aparato_Sistema: "",
-                Descripcion: "",
-                Disponibilidad: "",
-                Tipo: "",
-                Fecha_Actualizacion: "",
-                Fecha_Registro: "",
-                Estatus: ""
-            }
+            api: "organos/",
         };
     },
     methods: {
@@ -117,7 +108,7 @@ export default {
                 const response = await apiClient.get(this.api);
                 this.organos = response.data;
             } catch (error) {
-                console.error("Error fetching organos:", error);
+                console.error("Error fetching organos:", error.response ? error.response.data : error.message);
             }
         }
     },
