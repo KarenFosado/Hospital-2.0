@@ -149,7 +149,7 @@
 
                         </select>
                     </div>
- <br>
+
 
                     <div class="flex justify-end">
                         <button @click="closeModal" type="button"
@@ -237,13 +237,20 @@ export default {
         },
         async updateOrgano() {
             try {
-                await apiClient.put(`${this.api}${this.selectedOrgano.ID}/`, this.selectedOrgano);
-                this.fetchOrganos();
-                this.closeModal();
+                if (this.selectedOrgano.ID) {
+                    // Actualiza el órgano existente
+                    await apiClient.put(`${this.api}${this.selectedOrgano.ID}/`, this.selectedOrgano);
+                } else {
+                    // Crea un nuevo órgano
+                    await apiClient.post(this.api, this.selectedOrgano);
+                }
+                this.fetchOrganos(); // Refresca la lista de órganos
+                this.closeModal(); // Cierra el modal y restablece el formulario
             } catch (error) {
-                console.error("Error updating organo:", error.response ? error.response.data : error.message);
+                console.error("Error saving organo:", error.response ? error.response.data : error.message);
             }
         }
+
     },
     created() {
         this.fetchOrganos();
@@ -253,4 +260,6 @@ export default {
 </script>
 
 
-<style scoped>/* Add your component-specific styles here */</style>
+<style scoped>
+/* Add your component-specific styles here */
+</style>
