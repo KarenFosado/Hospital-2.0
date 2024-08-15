@@ -2,13 +2,13 @@
     <form>
         <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 rounded-lg shadow-lg overflow-hidden mt-5">
             <!-- Done Information -->
-            
+
 
             <div class="flex justify-between  flex-col items-center">
                 <label class="bloc k text-gray-700 text-3xl font-normal mb-2">Datos del organo</label>
             </div>
-           
- 
+
+
 
             <div class="mt-4">
                 <div class="flex justify-between">
@@ -16,10 +16,10 @@
                 </div>
                 <textarea
                     class=" bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-                    type="text"  />
+                    type="text" />
             </div>
 
-            
+
             <div class="mt-4">
                 <div class="flex justify-between">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Aparato y Sistema</label>
@@ -30,7 +30,7 @@
                 </select>
             </div>
 
-        
+
 
             <div class="mt-4">
                 <div class="flex justify-between">
@@ -38,7 +38,7 @@
                 </div>
                 <textarea
                     class=" bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-                    type="text"  />
+                    type="text" />
             </div>
 
 
@@ -48,11 +48,11 @@
                 </div>
                 <select
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center">
-                    <option value="">-- Seleciona una opción  --</option>
+                    <option value="">-- Seleciona una opción --</option>
                 </select>
             </div>
 
-             <div class="mt-4">
+            <div class="mt-4">
                 <div class="flex justify-between">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Tipo</label>
                 </div>
@@ -63,13 +63,14 @@
             </div>
 
 
-            
-            
-            
+
+
+
             <!-- Send Form -->
             <div class="mt-8">
                 <RouterLink to="/TableTransplante">
-                    <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-500 mb-5">Generar
+                    <button
+                        class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-500 mb-5">Generar
                         Solicitud</button>
                 </RouterLink>
             </div>
