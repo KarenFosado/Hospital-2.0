@@ -62,7 +62,8 @@
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
                                     <span class="material-symbols-outlined">edit</span>
                                 </a>
-                                <a href="#" @click="confirmDeleteOrgano(organo.ID)" class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                                <a href="#" @click="confirmDeleteOrgano(organo.ID)"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">
                                     <span class="material-symbols-outlined">delete</span>
                                 </a>
                             </td>
@@ -117,7 +118,8 @@
 
 
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="tipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo</label>
+                        <label for="tipo"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo</label>
                         <select v-model="selectedOrgano.Tipo" id="tipo"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <option v-for="tipo in tipos" :key="tipo" :value="tipo">{{ tipo }}</option>
@@ -127,8 +129,10 @@
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="fecha-actualizacion"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha Actualización</label>
-                        <input type="datetime-local" id="fecha-actualizacion" v-model="selectedOrgano.Fecha_Actualizacion"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha
+                            Actualización</label>
+                        <input type="datetime-local" id="fecha-actualizacion"
+                            v-model="selectedOrgano.Fecha_Actualizacion"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                     </div>
 
@@ -150,7 +154,7 @@
                         </select>
                     </div>
 
-
+                    <br>
                     <div class="flex justify-end">
                         <button @click="closeModal" type="button"
                             class="mr-4 px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-white rounded-lg">Cancelar</button>
@@ -213,20 +217,28 @@ export default {
             this.selectedOrgano = { ...organo };
             this.showModal = true;
         },
+
+
+
         async updateOrgano() {
-            try {
-                const organoId = this.selectedOrgano.ID;
-                if (organoId === null) {
-                    console.error("ID del órgano no definido.");
-                    return;
-                }
-                const response = await axios.put(`http://127.0.0.1:8000/organo/${organoId}`, 
-                this.selectedOrgano);
-                console.log("Órgano actualizado con éxito", response.data);
-            } catch (error) {
-                console.error("Error al actualizar el órgano", error);
-            }
-        },
+    try {
+        const organoId = this.selectedOrgano.ID;
+        if (organoId === null) {
+            console.error("ID del órgano no definido.");
+            return;
+        }
+        await apiClient.put(`http://127.0.0.1:8000/organo/${organoId}`, this.selectedOrgano);
+        console.log("Órgano actualizado con éxito");
+
+        this.fetchOrganos();  // Refresca la lista de órganos después de la actualización
+        this.closeModal();    // Cierra el modal después de la actualización
+    } catch (error) {
+        console.error("Error al actualizar el órgano", error);
+    }
+},
+
+
+
         closeModal() {
             this.showModal = false;
         },
@@ -272,9 +284,11 @@ export default {
     display: block;
     /* Estilos para el modal */
 }
+
 .modal-content {
     /* Estilos para el contenido del modal */
 }
+
 .close {
     cursor: pointer;
     /* Estilos para el botón de cerrar del modal */
