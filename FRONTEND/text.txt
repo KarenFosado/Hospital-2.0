@@ -1,0 +1,16 @@
+Arranca el entorno virtual
+
+    .\EntornoVirtualApi\Scripts\Activate
+
+
+Instala requerimientos
+
+    pip install -r requirements.txt
+
+Crea la base de datos en MySQL
+
+    create database test;
+
+Arranca Python
+
+    uvicorn app:app --reload

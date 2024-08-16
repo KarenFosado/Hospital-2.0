@@ -62,7 +62,7 @@
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
                                     <span class="material-symbols-outlined">edit</span>
                                 </a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">
+                                <a href="#" @click="confirmDeleteOrgano(organo.ID)" class="font-medium text-red-600 dark:text-red-500 hover:underline">
                                     <span class="material-symbols-outlined">delete</span>
                                 </a>
                             </td>
@@ -203,61 +203,83 @@ export default {
                 'Reproductor',
                 'Urinario',
                 'Sensorial'
-            ], // Enum de aparatos y sistemas
-            disponibilidades: ['Disponible', 'No Disponible'], // Enum de disponibilidad
-            tipos: ['Vital', 'No Vital'] // Enum de tipos
+            ],
+            disponibilidades: ['Disponible', 'No Disponible'],
+            tipos: ['Vital', 'No Vital']
         };
     },
     methods: {
+        editOrgano(organo) {
+            this.selectedOrgano = { ...organo };
+            this.showModal = true;
+        },
+        async updateOrgano() {
+            try {
+                const organoId = this.selectedOrgano.ID;
+                if (organoId === null) {
+                    console.error("ID del órgano no definido.");
+                    return;
+                }
+                const response = await axios.put(`http://127.0.0.1:8000/organo/${organoId}`, 
+                this.selectedOrgano);
+                console.log("Órgano actualizado con éxito", response.data);
+            } catch (error) {
+                console.error("Error al actualizar el órgano", error);
+            }
+        },
+        closeModal() {
+            this.showModal = false;
+        },
         async fetchOrganos() {
             try {
                 const response = await apiClient.get(this.api);
                 this.organos = response.data;
             } catch (error) {
-                console.error("Error fetching organos:", error.response ? error.response.data : error.message);
+                console.error("Error al obtener los órganos", error);
             }
         },
-        editOrgano(organo) {
-            this.selectedOrgano = { ...organo }; // Clona el órgano seleccionado
-            this.showModal = true;
-        },
-        closeModal() {
-            this.showModal = false;
-            this.selectedOrgano = {
-                Nombre: '',
-                Aparato_Sistema: '',
-                Descripcion: '',
-                Disponibilidad: '',
-                Tipo: '',
-                Estatus: false,
-                Fecha_Registro: '',
-                Fecha_Actualizacion: '',
-                ID: null
-            }; // Restablece el formulario
-        },
-        async updateOrgano() {
+        async deleteOrgano() {
             try {
-                if (this.selectedOrgano.ID) {
-                    // Actualiza el órgano existente
-                    await apiClient.put(`${this.api}${this.selectedOrgano.ID}/`, this.selectedOrgano);
-                } else {
-                    // Crea un nuevo órgano
-                    await apiClient.post(this.api, this.selectedOrgano);
+                const organoId = this.selectedOrgano.ID;
+                if (organoId === null) {
+                    console.error("ID del órgano no definido.");
+                    return;
                 }
-                this.fetchOrganos(); // Refresca la lista de órganos
-                this.closeModal(); // Cierra el modal y restablece el formulario
+                const response = await axios.delete(`http://127.0.0.1:8000/organo/${organoId}`);
+                console.log("Órgano eliminado con éxito", response.data);
+                this.fetchOrganos(); // Refrescar la lista después de eliminar
+                this.closeModal(); // Cerrar el modal después de eliminar
             } catch (error) {
-                console.error("Error saving organo:", error.response ? error.response.data : error.message);
+                console.error("Error al eliminar el órgano", error);
+            }
+        },
+        confirmDeleteOrgano(organoId) {
+            if (confirm("¿Estás seguro de que deseas eliminar este órgano?")) {
+                this.selectedOrgano.ID = organoId;
+                this.deleteOrgano();
             }
         }
-
     },
-    created() {
-        this.fetchOrganos();
+    mounted() {
+        this.fetchOrganos(); // Llama al método una vez
     }
 };
-
 </script>
+
+<style scoped>
+/* Agrega tus estilos específicos aquí */
+.modal {
+    display: block;
+    /* Estilos para el modal */
+}
+.modal-content {
+    /* Estilos para el contenido del modal */
+}
+.close {
+    cursor: pointer;
+    /* Estilos para el botón de cerrar del modal */
+}
+</style>
 
 
 <style scoped>
