@@ -15,6 +15,7 @@
           class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           type="text"
           placeholder="Introduce el nombre"
+          required
         />
       </div>
 
@@ -26,6 +27,7 @@
         <select
           v-model="selectedOrgano.Aparato_Sistema"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required
         >
           <option value="">-- Selecciona una opción --</option>
           <option v-for="aparato in aparatosSistemas" :key="aparato" :value="aparato">
@@ -44,6 +46,7 @@
           class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           rows="4"
           placeholder="Escribe una descripción"
+          required
         ></textarea>
       </div>
 
@@ -55,6 +58,7 @@
         <select
           v-model="selectedOrgano.Disponibilidad"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required
         >
           <option value="">-- Selecciona una opción --</option>
           <option v-for="disponibilidad in disponibilidades" :key="disponibilidad" :value="disponibilidad">
@@ -71,6 +75,7 @@
         <select
           v-model="selectedOrgano.Tipo"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required
         >
           <option value="">-- Selecciona una opción --</option>
           <option v-for="tipo in tipos" :key="tipo" :value="tipo">
@@ -87,8 +92,8 @@
         <select
           v-model="selectedOrgano.Estatus"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required
         >
-          <option value="">-- Selecciona una opción --</option>
           <option :value="true">Activo</option>
           <option :value="false">Inactivo</option>
         </select>
@@ -123,7 +128,7 @@ export default {
         Descripcion: "",
         Disponibilidad: "",
         Tipo: "",
-        Estatus: "",
+        Estatus: true,
       },
       aparatosSistemas: [
         "Circulatorio",
@@ -141,13 +146,31 @@ export default {
       ],
       disponibilidades: ["Disponible", "No Disponible"],
       tipos: ["Vital", "No Vital"],
-      estatusOptions: ["Activo", "Inactivo"],
     };
   },
   methods: {
     async addOrgano() {
       try {
-        await apiClient.post("organos/", this.selectedOrgano);
+        const token = localStorage.getItem("token");
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+
+        // Capturar la fecha y hora actual del sistema para las fechas de registro y actualización
+        const currentDate = new Date().toISOString();
+        this.selectedOrgano.Fecha_Registro = currentDate;
+        this.selectedOrgano.Fecha_Actualizacion = currentDate;
+
+        // Validación adicional (opcional) de campos antes de enviar
+        if (!this.selectedOrgano.Nombre || !this.selectedOrgano.Aparato_Sistema) {
+          alert("Todos los campos son obligatorios.");
+          return;
+        }
+
+        await apiClient.post("organo/", this.selectedOrgano, config);
+
         alert("Órgano agregado con éxito");
         this.resetForm();
       } catch (error) {
@@ -161,7 +184,7 @@ export default {
         Descripcion: "",
         Disponibilidad: "",
         Tipo: "",
-        Estatus: "",
+        Estatus: true,
       };
     },
   },
