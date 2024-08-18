@@ -1,4 +1,3 @@
-from typing import List, Union
 from pydantic import BaseModel
 from datetime import datetime
 from enum import Enum
@@ -33,16 +32,20 @@ class OrganoBase(BaseModel):
     Disponibilidad: DisponibilidadEnum
     Tipo: TipoEnum
     Estatus: bool
-    Fecha_Registro: datetime
-    Fecha_Actualizacion: datetime
 
+# Esquema para crear un órgano, no incluye las fechas
 class OrganoCreate(OrganoBase):
     pass
 
+# Esquema para actualizar un órgano, tampoco incluye las fechas
 class OrganoUpdate(OrganoBase):
     pass
 
+# Esquema para la respuesta, incluye las fechas
 class Organo(OrganoBase):
     ID: int
+    Fecha_Registro: datetime
+    Fecha_Actualizacion: datetime
+
     class Config:
         orm_mode = True

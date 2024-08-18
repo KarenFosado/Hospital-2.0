@@ -4,8 +4,6 @@ import crud.tbc_organos, config.db
 import schemas.tbc_organos
 import models.tbc_organos
 from typing import List
-from portadortoken import portador
-
 
 tbc_organos = APIRouter()
 
@@ -17,8 +15,6 @@ def get_db():
         yield db
     finally:
         db.close()
-        
-
 
 @tbc_organos.get("/organos/", response_model=List[schemas.tbc_organos.Organo], tags=["Organos"])
 def read_organos(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
