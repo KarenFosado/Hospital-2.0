@@ -36,17 +36,16 @@
         </select>
       </div>
 
-      <!-- Descripción -->
+      <!-- Detalles Adicionales -->
       <div class="mt-4">
         <div class="flex justify-between">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
+          <label class="block text-gray-700 text-sm font-bold mb-2">Detalles Adicionales</label>
         </div>
         <textarea
-          v-model="selectedOrgano.Descripcion"
+          v-model="selectedOrgano.Detalles_Adicionales"
           class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
           rows="4"
-          placeholder="Escribe una descripción"
-          required
+          placeholder="Escribe detalles adicionales"
         ></textarea>
       </div>
 
@@ -81,6 +80,82 @@
           <option v-for="tipo in tipos" :key="tipo" :value="tipo">
             {{ tipo }}
           </option>
+        </select>
+      </div>
+
+      
+
+      <!-- Fecha de Extracción -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Fecha de Extracción</label>
+        </div>
+        <input
+          v-model="selectedOrgano.Fecha_Extraccion"
+          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          type="datetime-local"
+        />
+      </div>
+
+      <!-- Edad del Donante -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Edad del Donante</label>
+        </div>
+        <input
+          v-model="selectedOrgano.Edad_Donante"
+          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          type="number"
+          placeholder="Introduce la edad del donante"
+        />
+      </div>
+
+      <!-- Grupo Sanguíneo -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Grupo Sanguíneo</label>
+        </div>
+        <select
+          v-model="selectedOrgano.Grupo_Sanguineo"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required
+        >
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+      </div>
+
+      <!-- Estado de Salud -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Estado de Salud</label>
+        </div>
+        <input
+          v-model="selectedOrgano.Estado_Salud"
+          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          type="text"
+          placeholder="Introduce el estado de salud"
+        />
+      </div>
+
+      <!-- Enfermedades Transmisibles -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Enfermedades Transmisibles</label>
+        </div>
+        <select
+          v-model="selectedOrgano.Enfermedades_Transmisibles"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required
+        >
+          <option :value="true">Sí</option>
+          <option :value="false">No</option>
         </select>
       </div>
 
@@ -125,9 +200,15 @@ export default {
       selectedOrgano: {
         Nombre: "",
         Aparato_Sistema: "",
-        Descripcion: "",
+        Detalles_Adicionales: "",
         Disponibilidad: "",
         Tipo: "",
+       
+        Fecha_Extraccion: "",
+        Edad_Donante: null,
+        Grupo_Sanguineo: "",
+        Estado_Salud: "",
+        Enfermedades_Transmisibles: false,
         Estatus: true,
       },
       aparatosSistemas: [
@@ -144,7 +225,7 @@ export default {
         "Urinario",
         "Sensorial",
       ],
-      disponibilidades: ["Disponible", "No Disponible"],
+      disponibilidades: ["En Proceso", "Disponible", "No Disponible", "Reservado", "Entregado"],
       tipos: ["Vital", "No Vital"],
     };
   },
@@ -157,11 +238,6 @@ export default {
             Authorization: `Bearer ${token}`,
           },
         };
-
-        // Capturar la fecha y hora actual del sistema para las fechas de registro y actualización
-        const currentDate = new Date().toISOString();
-        this.selectedOrgano.Fecha_Registro = currentDate;
-        this.selectedOrgano.Fecha_Actualizacion = currentDate;
 
         // Validación adicional (opcional) de campos antes de enviar
         if (!this.selectedOrgano.Nombre || !this.selectedOrgano.Aparato_Sistema) {
@@ -181,9 +257,15 @@ export default {
       this.selectedOrgano = {
         Nombre: "",
         Aparato_Sistema: "",
-        Descripcion: "",
+        Detalles_Adicionales: "",
         Disponibilidad: "",
         Tipo: "",
+        
+        Fecha_Extraccion: "",
+        Edad_Donante: null,
+        Grupo_Sanguineo: "",
+        Estado_Salud: "",
+        Enfermedades_Transmisibles: false,
         Estatus: true,
       };
     },
