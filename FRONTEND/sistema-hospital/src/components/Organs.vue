@@ -38,7 +38,7 @@
               <th scope="col" class="px-6 py-3">DETALLES ADICIONALES</th>
               <th scope="col" class="px-6 py-3">DISPONIBILIDAD</th>
               <th scope="col" class="px-6 py-3">TIPO</th>
-              
+
               <th scope="col" class="px-6 py-3">FECHA DE EXTRACCIÓN</th>
               <th scope="col" class="px-6 py-3">EDAD DEL DONANTE</th>
               <th scope="col" class="px-6 py-3">GRUPO SANGUÍNEO</th>
@@ -59,7 +59,7 @@
               <td class="px-6 py-4">{{ organo.Detalles_Adicionales }}</td>
               <td class="px-6 py-4">{{ organo.Disponibilidad }}</td>
               <td class="px-6 py-4">{{ organo.Tipo }}</td>
-             
+
               <td class="px-6 py-4">{{ organo.Fecha_Extraccion }}</td>
               <td class="px-6 py-4">{{ organo.Edad_Donante }}</td>
               <td class="px-6 py-4">{{ organo.Grupo_Sanguineo }}</td>
@@ -86,112 +86,109 @@
 
     <!-- Modal de Edición -->
     <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Editar Órgano</h3>
-        <form @submit.prevent="updateOrgano">
-          <div class="mb-4">
-            <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
-            <input v-model="selectedOrgano.Nombre" type="text" id="nombre"
-              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-          </div>
-
-          <div class="col-span-2 sm:col-span-1">
-            <label for="aparatosistema"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Aparato Sistema</label>
-            <select v-model="selectedOrgano.Aparato_Sistema" id="aparatosistema"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-              <option v-for="sistema in aparatosSistemas" :key="sistema" :value="sistema">{{ sistema }}
-              </option>
-            </select>
-          </div>
-
-          <div class="mb-4">
-            <label for="detalles_adicionales"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300">Detalles Adicionales</label>
-            <textarea v-model="selectedOrgano.Detalles_Adicionales" id="detalles_adicionales" rows="4"
-              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
-          </div>
-
-          <div class="col-span-2 sm:col-span-1">
-            <label for="disponibilidad"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Disponibilidad</label>
-            <select v-model="selectedOrgano.Disponibilidad" id="disponibilidad"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-              <option v-for="disponibilidad in disponibilidades" :key="disponibilidad"
-                :value="disponibilidad">
-                {{ disponibilidad }}
-              </option>
-            </select>
-          </div>
-
-          <div class="col-span-2 sm:col-span-1">
-            <label for="tipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo</label>
-            <select v-model="selectedOrgano.Tipo" id="tipo"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-              <option v-for="tipo in tipos" :key="tipo" :value="tipo">{{ tipo }}</option>
-            </select>
-          </div>
-
-          <!-- Campos adicionales -->
-          
-
-          <div class="mb-4">
-            <label for="fecha_extraccion"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha de Extracción</label>
-            <input v-model="selectedOrgano.Fecha_Extraccion" type="datetime-local" id="fecha_extraccion"
-              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-          </div>
-
-          <div class="mb-4">
-            <label for="edad_donante"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300">Edad del Donante</label>
-            <input v-model="selectedOrgano.Edad_Donante" type="number" id="edad_donante"
-              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-          </div>
-
-          <div class="mb-4">
-            <label for="grupo_sanguineo"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300">Grupo Sanguíneo</label>
-            <select v-model="selectedOrgano.Grupo_Sanguineo" id="grupo_sanguineo"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
-            </select>
-          </div>
-
-          <div class="mb-4">
-            <label for="estado_salud"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300">Estado de Salud</label>
-            <input v-model="selectedOrgano.Estado_Salud" type="text" id="estado_salud"
-              class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-          </div>
-
-          <div class="mb-4">
-            <label for="enfermedades_transmisibles"
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300">Enfermedades Transmisibles</label>
-            <select v-model="selectedOrgano.Enfermedades_Transmisibles" id="enfermedades_transmisibles"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-              <option :value="true">Sí</option>
-              <option :value="false">No</option>
-            </select>
-          </div>
-          <!-- Fin campos adicionales -->
-
-          <br>
-          <div class="flex justify-end">
-            <button @click="closeModal" type="button"
-              class="mr-4 px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-white rounded-lg">Cancelar</button>
-            <button type="submit" class="px-4 py-2 bg-blue-500 dark:bg-blue-700 text-white rounded-lg">Guardar</button>
-          </div>
-        </form>
+  <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl max-h-[80vh] overflow-auto">
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Editar Órgano</h3>
+    <form @submit.prevent="updateOrgano" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      
+      <!-- Nombre -->
+      <div class="col-span-1">
+        <label for="nombre" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
+        <input v-model="selectedOrgano.Nombre" type="text" id="nombre"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
       </div>
-    </div>
+      
+      <!-- Edad del Donante -->
+      <div class="col-span-1">
+        <label for="edad_donante" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Edad del Donante</label>
+        <input v-model="selectedOrgano.Edad_Donante" type="number" id="edad_donante"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      </div>
+      
+      <!-- Fecha de Extracción -->
+      <div class="col-span-2">
+        <label for="fecha_extraccion" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha de Extracción</label>
+        <input v-model="selectedOrgano.Fecha_Extraccion" type="datetime-local" id="fecha_extraccion"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      </div>
+      
+      <!-- Aparato Sistema -->
+      <div class="col-span-1">
+        <label for="aparatosistema" class="block text-sm font-medium text-gray-700 dark:text-white">Aparato Sistema</label>
+        <select v-model="selectedOrgano.Aparato_Sistema" id="aparatosistema"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+          <option v-for="sistema in aparatosSistemas" :key="sistema" :value="sistema">{{ sistema }}</option>
+        </select>
+      </div>
+      
+      <!-- Tipo -->
+      <div class="col-span-1">
+        <label for="tipo" class="block text-sm font-medium text-gray-700 dark:text-white">Tipo</label>
+        <select v-model="selectedOrgano.Tipo" id="tipo"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+          <option v-for="tipo in tipos" :key="tipo" :value="tipo">{{ tipo }}</option>
+        </select>
+      </div>
+      
+      <!-- Grupo Sanguíneo -->
+      <div class="col-span-1">
+        <label for="grupo_sanguineo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Grupo Sanguíneo</label>
+        <select v-model="selectedOrgano.Grupo_Sanguineo" id="grupo_sanguineo"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+        </select>
+      </div>
+      
+      <!-- Estado de Salud -->
+      <div class="col-span-1">
+        <label for="estado_salud" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Estado de Salud</label>
+        <input v-model="selectedOrgano.Estado_Salud" type="text" id="estado_salud"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      </div>
+      
+      <!-- Enfermedades Transmisibles -->
+      <div class="col-span-1">
+        <label for="enfermedades_transmisibles" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Enfermedades Transmisibles</label>
+        <select v-model="selectedOrgano.Enfermedades_Transmisibles" id="enfermedades_transmisibles"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+          <option :value="true">Sí</option>
+          <option :value="false">No</option>
+        </select>
+      </div>
+      
+      <!-- Disponibilidad -->
+      <div class="col-span-2">
+        <label for="disponibilidad" class="block text-sm font-medium text-gray-900 dark:text-white">Disponibilidad</label>
+        <select v-model="selectedOrgano.Disponibilidad" id="disponibilidad"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+          <option v-for="disponibilidad in disponibilidades" :key="disponibilidad" :value="disponibilidad">{{ disponibilidad }}</option>
+        </select>
+      </div>
+      
+      <!-- Detalles Adicionales -->
+      <div class="col-span-2">
+        <label for="detalles_adicionales" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Detalles Adicionales</label>
+        <textarea v-model="selectedOrgano.Detalles_Adicionales" id="detalles_adicionales" rows="4"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+      </div>
+
+      <!-- Botones -->
+      <div class="col-span-2 flex justify-end">
+        <button @click="closeModal" type="button"
+          class="mr-4 px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-white rounded-lg">Cancelar</button>
+        <button type="submit" class="px-4 py-2 bg-blue-500 dark:bg-blue-700 text-white rounded-lg">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
   </div>
 </template>
 
@@ -216,7 +213,7 @@ export default {
         Disponibilidad: '',
         Tipo: '',
         Estatus: false,
-        
+
         Fecha_Extraccion: '',
         Edad_Donante: 0,
         Grupo_Sanguineo: '',
