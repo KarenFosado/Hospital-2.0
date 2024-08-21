@@ -15,6 +15,26 @@
           type="text" placeholder="Introduce el nombre" required />
       </div>
 
+      <!-- Edad del Donante -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Edad del Donante</label>
+        </div>
+        <input v-model="selectedOrgano.Edad_Donante"
+          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          type="number" placeholder="Introduce la edad del donante" required />
+      </div>
+
+      <!-- Fecha de Extracción -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Fecha de Extracción</label>
+        </div>
+        <input v-model="selectedOrgano.Fecha_Extraccion"
+          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          type="datetime-local" required />
+      </div>
+
       <!-- Aparato y Sistema -->
       <div class="mt-4">
         <div class="flex justify-between">
@@ -26,31 +46,6 @@
           <option value="">-- Selecciona una opción --</option>
           <option v-for="aparato in aparatosSistemas" :key="aparato" :value="aparato">
             {{ aparato }}
-          </option>
-        </select>
-      </div>
-
-      <!-- Detalles Adicionales -->
-      <div class="mt-4">
-        <div class="flex justify-between">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Detalles Adicionales</label>
-        </div>
-        <textarea v-model="selectedOrgano.Detalles_Adicionales"
-          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-          rows="4" placeholder="Escribe detalles adicionales"></textarea>
-      </div>
-
-      <!-- Disponibilidad -->
-      <div class="mt-4">
-        <div class="flex justify-between">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Disponibilidad</label>
-        </div>
-        <select v-model="selectedOrgano.Disponibilidad"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
-          required>
-          <option value="">-- Selecciona una opción --</option>
-          <option v-for="disponibilidad in disponibilidades" :key="disponibilidad" :value="disponibilidad">
-            {{ disponibilidad }}
           </option>
         </select>
       </div>
@@ -68,28 +63,6 @@
             {{ tipo }}
           </option>
         </select>
-      </div>
-
-
-
-      <!-- Fecha de Extracción -->
-      <div class="mt-4">
-        <div class="flex justify-between">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Fecha de Extracción</label>
-        </div>
-        <input v-model="selectedOrgano.Fecha_Extraccion"
-          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-          type="datetime-local" required/>
-      </div>
-
-      <!-- Edad del Donante -->
-      <div class="mt-4">
-        <div class="flex justify-between">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Edad del Donante</label>
-        </div>
-        <input v-model="selectedOrgano.Edad_Donante"
-          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
-          type="number" placeholder="Introduce la edad del donante" required/>
       </div>
 
       <!-- Grupo Sanguíneo -->
@@ -127,6 +100,47 @@
         </select>
       </div>
 
+      <!-- Enfermedades Transmisibles -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Enfermedades Transmisibles</label>
+        </div>
+        <select v-model="selectedOrgano.Enfermedades_Transmisibles"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required>
+          <option :value="null">-- Selecciona una opción --</option> <!-- Cambiado a :value="null" -->
+          <option :value="true">Sí</option>
+          <option :value="false">No</option>
+        </select>
+      </div>
+
+      <!-- Disponibilidad -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Disponibilidad</label>
+        </div>
+        <select v-model="selectedOrgano.Disponibilidad"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required>
+          <option value="">-- Selecciona una opción --</option>
+          <option v-for="disponibilidad in disponibilidades" :key="disponibilidad" :value="disponibilidad">
+            {{ disponibilidad }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Detalles Adicionales -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Detalles Adicionales</label>
+        </div>
+        <textarea v-model="selectedOrgano.Detalles_Adicionales"
+          class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+          rows="4" placeholder="Escribe detalles adicionales"></textarea>
+      </div>
+
+
+
 
       <!-- Estatus -->
       <div class="mt-4">
@@ -140,7 +154,7 @@
           <option :value="true">Activo</option>
           <option :value="false">Inactivo</option>
         </select>
-      </div>
+      </div> 
 
       <!-- Botón de Envío -->
       <div class="mt-8">
@@ -173,7 +187,7 @@ export default {
         Edad_Donante: null,
         Grupo_Sanguineo: "",
         Estado_Salud: "",
-        Enfermedades_Transmisibles: false,
+        Enfermedades_Transmisibles: null,
         Estatus: "",
       },
       aparatosSistemas: [
@@ -231,7 +245,7 @@ export default {
         Edad_Donante: null,
         Grupo_Sanguineo: "",
         Estado_Salud: "",
-        Enfermedades_Transmisibles: false,
+        Enfermedades_Transmisibles: null,
         Estatus: "",
       };
     },
