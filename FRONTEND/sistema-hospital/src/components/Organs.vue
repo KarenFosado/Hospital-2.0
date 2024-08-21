@@ -18,6 +18,8 @@
               class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Buscar órgano...">
           </div>
+
+
           <div>
             <RouterLink to="/organform">
               <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
@@ -27,6 +29,9 @@
               </button>
             </RouterLink>
           </div>
+         
+          
+
           <label for="table-search" class="sr-only">Buscar</label>
         </div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -34,16 +39,16 @@
             <tr>
               <th scope="col" class="p-4"></th>
               <th scope="col" class="px-6 py-3">NOMBRE</th>
-              <th scope="col" class="px-6 py-3">APARATOS Y SISTEMAS</th>
-              <th scope="col" class="px-6 py-3">DETALLES ADICIONALES</th>
-              <th scope="col" class="px-6 py-3">DISPONIBILIDAD</th>
-              <th scope="col" class="px-6 py-3">TIPO</th>
-
-              <th scope="col" class="px-6 py-3">FECHA DE EXTRACCIÓN</th>
               <th scope="col" class="px-6 py-3">EDAD DEL DONANTE</th>
+              <th scope="col" class="px-6 py-3">FECHA DE EXTRACCIÓN</th>
+              <th scope="col" class="px-6 py-3">APARATOS Y SISTEMAS</th>
+              <th scope="col" class="px-6 py-3">TIPO</th>
               <th scope="col" class="px-6 py-3">GRUPO SANGUÍNEO</th>
               <th scope="col" class="px-6 py-3">ESTADO DE SALUD</th>
               <th scope="col" class="px-6 py-3">ENFERMEDADES TRANSMISIBLES</th>
+              <th scope="col" class="px-6 py-3">DETALLES ADICIONALES</th>
+              <th scope="col" class="px-6 py-3">DISPONIBILIDAD</th>
+
               <th scope="col" class="px-6 py-3">FECHA DE ACTUALIZACIÓN</th>
               <th scope="col" class="px-6 py-3">FECHA DE REGISTRO</th>
               <th scope="col" class="px-6 py-3">ESTATUS</th>
@@ -55,16 +60,15 @@
               class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
               <td class="w-4 p-4"></td>
               <td class="px-6 py-4">{{ organo.Nombre }}</td>
-              <td class="px-6 py-4">{{ organo.Aparato_Sistema }}</td>
-              <td class="px-6 py-4">{{ organo.Detalles_Adicionales }}</td>
-              <td class="px-6 py-4">{{ organo.Disponibilidad }}</td>
-              <td class="px-6 py-4">{{ organo.Tipo }}</td>
-
-              <td class="px-6 py-4">{{ organo.Fecha_Extraccion }}</td>
               <td class="px-6 py-4">{{ organo.Edad_Donante }}</td>
+              <td class="px-6 py-4">{{ organo.Fecha_Extraccion }}</td>
+              <td class="px-6 py-4">{{ organo.Aparato_Sistema }}</td>
+              <td class="px-6 py-4">{{ organo.Tipo }}</td>
               <td class="px-6 py-4">{{ organo.Grupo_Sanguineo }}</td>
               <td class="px-6 py-4">{{ organo.Estado_Salud }}</td>
               <td class="px-6 py-4">{{ organo.Enfermedades_Transmisibles ? 'Sí' : 'No' }}</td>
+              <td class="px-6 py-4">{{ organo.Detalles_Adicionales }}</td>
+              <td class="px-6 py-4">{{ organo.Disponibilidad }}</td>
               <td class="px-6 py-4">{{ organo.Fecha_Actualizacion }}</td>
               <td class="px-6 py-4">{{ organo.Fecha_Registro }}</td>
               <td class="px-6 py-4">{{ organo.Estatus }}</td>
@@ -236,6 +240,7 @@ export default {
       searchQuery: '', // Modelo para la búsqueda
       selectedOrgano: {
         Nombre: '',
+        Edad_Donante: 0,
         Aparato_Sistema: '',
         Detalles_Adicionales: '',
         Disponibilidad: '',
@@ -243,7 +248,7 @@ export default {
         Estatus: false,
 
         Fecha_Extraccion: '',
-        Edad_Donante: 0,
+        
         Grupo_Sanguineo: '',
         Estado_Salud: '',
         Enfermedades_Transmisibles: false,
@@ -332,9 +337,12 @@ export default {
 
     searchOrgano() {
       if (this.searchQuery) {
-        this.filteredOrganos = this.organos.filter(organo =>
-          organo.Nombre.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
+        const query = this.searchQuery.toLowerCase();
+        this.filteredOrganos = this.organos.filter(organo => {
+          return (
+            organo.Nombre.toLowerCase().includes(query)
+          );
+        });
       } else {
         this.filteredOrganos = this.organos;
       }

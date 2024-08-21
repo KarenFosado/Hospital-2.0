@@ -100,20 +100,6 @@
         </select>
       </div>
 
-      <!-- Enfermedades Transmisibles -->
-      <div class="mt-4">
-        <div class="flex justify-between">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Enfermedades Transmisibles</label>
-        </div>
-        <select v-model="selectedOrgano.Enfermedades_Transmisibles"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
-          required>
-          <option :value="null">-- Selecciona una opción --</option> <!-- Cambiado a :value="null" -->
-          <option :value="true">Sí</option>
-          <option :value="false">No</option>
-        </select>
-      </div>
-
       <!-- Disponibilidad -->
       <div class="mt-4">
         <div class="flex justify-between">
@@ -139,6 +125,21 @@
           rows="4" placeholder="Escribe detalles adicionales"></textarea>
       </div>
 
+
+
+      <!-- Enfermedades Transmisibles -->
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Enfermedades Transmisibles</label>
+        </div>
+        <select v-model="selectedOrgano.Enfermedades_Transmisibles"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center"
+          required>
+          <option :value="null">-- Selecciona una opción --</option> <!-- Cambiado a :value="null" -->
+          <option :value="true">Sí</option>
+          <option :value="false">No</option>
+        </select>
+      </div>
 
 
 
