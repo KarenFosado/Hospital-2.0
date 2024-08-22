@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '@/components/login.vue'
-import RegisterView from '@/components/register.vue'
 import DashboardView from '@/components/Dashboard.vue'
 import UserView from '@/components/User.vue'
 // 
@@ -14,6 +13,12 @@ import FooterView from '@/components/Footer.vue'
 
 import OrganDetails from '@/components/Organ_Details.vue'
 import OrganForm from '@/components/OrganForm.vue'
+
+
+
+
+import ForgotPasswordView from '@/components/forgot-password.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,11 +34,16 @@ const router = createRouter({
       component: UserView
     },
     {
+      path: '/forgot-password',
+      name: 'forgot-password',
+      component: ForgotPasswordView
+    },
+
+    {
       path: '/dashboard',
       name: 'dashboard',
       component: DashboardView,
       children:[
-        // Ruta de PersonView ha sido eliminada
         {
           path: '/requestTansplant',
           name: 'requestTransplant',
@@ -80,3 +90,5 @@ const router = createRouter({
 })
 
 export default router
+
+

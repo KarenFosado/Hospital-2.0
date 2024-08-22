@@ -147,11 +147,16 @@
                required />
       </div>
 
-      <!-- Botón de Envío -->
-      <div class="mt-8">
+       <!-- Botones de Envío y Cancelar -->
+      <div class="mt-8 flex justify-between">
         <button @click="registerUser" 
-                class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-500 mb-5">
+                class="bg-gray-700 text-white font-bold py-2 px-4 rounded hover:bg-gray-500 mb-5">
           Crear Cuenta
+        </button>
+        <button @click="cancelRegistration" 
+                type="button" 
+                class="bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-400 mb-5">
+          Cancelar
         </button>
       </div>
     </div>
@@ -208,17 +213,52 @@ export default {
         this.user.Persona_ID = personId;
         const userResponse = await axios.post('http://127.0.0.1:8000/users/', this.user);
 
-        if (userResponse.status === 200) {
+        if (userResponse.status === 201) {  // Cambiado a 201 para indicar "Created"
           alert('Cuenta creada exitosamente');
-          this.$router.push('/login'); // Redirigir al login o a otra página
+          this.clearForm();  // Limpiar el formulario después de la creación exitosa
         } else {
           alert('Error al crear la cuenta');
         }
       } catch (error) {
         console.error('Error al crear la cuenta:', error);
-        alert('Hubo un problema al crear tu cuenta. Inténtalo de nuevo.');
+        if (error.response && error.response.data) {
+          alert(`Hubo un problema al crear tu cuenta: ${JSON.stringify(error.response.data)}`);
+        } else {
+          alert('Hubo un problema al crear tu cuenta. Inténtalo de nuevo.');
+        }
       }
+    },
+    clearForm() {
+      // Restablecer los datos del formulario
+      this.person = {
+        Titulo_Cortesia: '',
+        Nombre: '',
+        Primer_Apellido: '',
+        Segundo_Apellido: '',
+        Fecha_Nacimiento: '',
+        Fotografia: '',
+        Genero: 'Masculino',
+        Tipo_Sangre: 'A+',
+        Estatus: true,
+        Fecha_Registro: new Date().toISOString(),
+        Fecha_Actualizacion: new Date().toISOString(),
+      };
+      this.user = {
+        Nombre_Usuario: '',
+        Correo_Electronico: '',
+        Contrasena: '',
+        Numero_Telefonico_Movil: '',
+        Estatus: 'Activo',
+        Fecha_Registro: new Date().toISOString(),
+        Fecha_Actualizacion: new Date().toISOString(),
+      };
+      this.confirmPassword = '';
+    },
+    cancelRegistration() {
+      this.clearForm();  // Limpiar el formulario
+      this.$router.push('/');  // Redirigir a la misma página de registro
     }
   }
 };
 </script>
+

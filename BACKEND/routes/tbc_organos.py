@@ -17,8 +17,8 @@ def get_db():
         db.close()
 
 @tbc_organos.get("/organos/", response_model=List[schemas.tbc_organos.Organo], tags=["Organos"])
-def read_organos(skip: int = 0, limit: int = 1000, db: Session = Depends(get_db)):
-    db_organos = crud.tbc_organos.get_organos(db=db, skip=skip, limit=limit)
+def read_organos(db: Session = Depends(get_db)):
+    db_organos = crud.tbc_organos.get_organos(db=db)
     return db_organos
 
 @tbc_organos.get("/organo/{id}", response_model=schemas.tbc_organos.Organo, tags=["Organos"])
